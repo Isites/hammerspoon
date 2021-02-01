@@ -87,6 +87,14 @@
     local this = windowMeta.new()
     this.window:centerOnScreen(this.screen)
   end
+
+  module.halfCenterOnScreen = function ()
+    local this = windowMeta.new()
+    local w = this.screenGrid.w
+    local h = this.screenGrid.h
+    local cell = Cell(0.25 * w, 0.25 * h, 0.5 * w, 0.5 * h)
+    grid.set(this.window, cell, this.screen)
+  end
   
   module.throwLeft = function ()
     local this = windowMeta.new()
@@ -102,7 +110,7 @@
     local this = windowMeta.new()
     local cell = Cell(0, 0, 0.5 * this.screenGrid.w, this.screenGrid.h)
     grid.set(this.window, cell, this.screen)
-    this.window.setShadows(true)
+    -- this.window.setShadows(true)
   end
   
   module.rightHalf = function ()
