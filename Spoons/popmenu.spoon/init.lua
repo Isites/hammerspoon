@@ -7,7 +7,7 @@ local app = require "hs.application"
 local timer = require "hs.timer"
 local hyper      = {'cmd', 'shift'}
 
-local terminal = 'terminal'
+local terminal = 'iTerm'
 
 
 
@@ -22,6 +22,14 @@ function openApp(name)
 	return handleApp
 end
 
+function toNode()
+	openApp(terminal)
+	-- 输入登陆命令
+  	hs.eventtap.keyStroke({}, 'return')
+	hs.eventtap.keyStroke('cmd', 'v')
+	hs.eventtap.keyStroke({}, 'return')
+end
+
 app.enableSpotlightForNameSearches(true)
 
 autoMenu = hm.new(false):setMenu({
@@ -30,12 +38,29 @@ autoMenu = hm.new(false):setMenu({
 		fn = function()
 			hs.alert.show('Master is handsome!')
 		end
+	},
+	{
+		title = "Login",
+		menu = {
+			{
+				title = "Login Tip",
+				fn = function()
+					hs.alert.show('copy node ip first')
+				end
+			},
+			{
+				title = "To Node",
+				fn = function()
+					toNode()
+				end
+			}
+		}
 	}
 })
 
 
 -- 打开popmenubar
 hk.bind(hyper, 'm', function()
-    local point = mouse.getAbsolutePosition()
+    local point = mouse.absolutePosition()
     autoMenu:popupMenu(point)
 end)

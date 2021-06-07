@@ -8,4 +8,6 @@ hk.bind(hyper, '`', function()
     local center = hs.geometry.rectMidPoint(rect)
  
     hs.mouse.setAbsolutePosition(center)
+    -- 通过鼠标点击聚焦
+    hs.eventtap.leftClick(center)
 end)
