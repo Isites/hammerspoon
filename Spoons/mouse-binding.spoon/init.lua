@@ -1,5 +1,5 @@
 local hk = require "hs.hotkey"
-local hyper      = {'cmd'}
+local hyper      = {'alt'}
 -- Move Mouse to center of next Monitor
 hk.bind(hyper, '`', function()
     local screen = hs.mouse.getCurrentScreen()
