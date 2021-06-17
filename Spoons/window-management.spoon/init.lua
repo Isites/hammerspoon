@@ -2,6 +2,7 @@
 --                         ** Something Global **                       --
 -- -----------------------------------------------------------------------
   -- Comment out this following line if you wish to see animations
+  local layout = require "hs.layout"
   local windowMeta = {}
   window = require "hs.window"
   hs.window.animationDuration = 0
@@ -114,9 +115,10 @@
   end
   
   module.rightHalf = function ()
-    local this = windowMeta.new()
-    local cell = Cell(0.5 * this.screenGrid.w, 0, 0.5 * this.screenGrid.w, this.screenGrid.h)
-    grid.set(this.window, cell, this.screen)
+    -- local this = windowMeta.new()
+    -- local cell = Cell(0.5 * this.screenGrid.w, 0, 0.5 * this.screenGrid.w, this.screenGrid.h)
+    -- grid.set(this.window, cell, this.screen)
+    window.focusedWindow():moveToUnit(layout.right50)
   end
   
   -- Windows-like cycle left

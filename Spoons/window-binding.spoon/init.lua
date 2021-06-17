@@ -1,5 +1,8 @@
 local wm = require('window-management')
 local hk = require "hs.hotkey"
+local hints = require "hs.hints"
+
+local hyperWindow = {"ctrl", "alt", "cmd"}
 
 -- * Key Binding Utility
 --- Bind hotkey for window management.
@@ -21,7 +24,7 @@ windowBind({"ctrl", "alt"}, {
 })
 
 -- * Set Window Position on screen
-windowBind({"ctrl", "alt", "cmd"}, {
+windowBind(hyperWindow, {
   m = wm.maximizeWindow,    -- ⌃⌥⌘ + M
   c = wm.halfCenterOnScreen,    -- ⌃⌥⌘ + C
   left = wm.leftHalf,       -- ⌃⌥⌘ + ←
@@ -45,7 +48,17 @@ windowBind({"ctrl", "alt", "cmd"}, {
 -- })
 
 -- * Windows-like cycle
-windowBind({"ctrl", "alt", "cmd"}, {
+windowBind(hyperWindow, {
   u = wm.cycleLeft,          -- ⌃⌥⌘ + u
   i = wm.cycleRight          -- ⌃⌥⌘ + i
 })
+
+-- display a keyboard hint for switching focus to each window
+hk.bind(hyperWindow, 'w', function()
+    hints.windowHints()
+end)
+
+-- Display current application window
+hk.bind(hyperWindow, 'a', function()
+    hints.windowHints(hs.window.focusedWindow():application():allWindows())
+end)
