@@ -59,6 +59,6 @@ hk.bind(hyperWindow, 'w', function()
 end)
 
 -- Display current application window
-hk.bind(hyperWindow, 'a', function()
+hk.bind(hyperWindow, '/', function()
     hints.windowHints(hs.window.focusedWindow():application():allWindows())
 end)
